@@ -1,1 +1,1 @@
-{ "status": { "maintenance": true, "message": "Hey boy! Im on maintenance" } }
+{ "status": { "maintenance": false, "message": "Hey boy! Im on maintenance" } }
