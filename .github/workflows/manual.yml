@@ -31,8 +31,6 @@ jobs:
         sudo su
         mkdir tmp
         cd tmp
-        apt-get update
-        apt-get install git
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
         git remote remove origin
