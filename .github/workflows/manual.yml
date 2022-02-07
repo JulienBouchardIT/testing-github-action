@@ -44,6 +44,4 @@ jobs:
         
         git add .
         git commit -m "This is a scripted commit"
-        git push
-
-
+        git push --set-upstream origin main
