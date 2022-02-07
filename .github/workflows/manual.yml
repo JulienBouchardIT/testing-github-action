@@ -26,11 +26,13 @@ jobs:
     
     steps:
     # Runs a single command using the runners shell
-    - name: Send greeting
+    - name: Change config
       run: |
         sudo su
         mkdir tmp
         cd tmp
+        git config user.name "change_config_workflow"
+        git config user.email "someone@someplace.com"
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
         git remote remove origin
@@ -40,6 +42,7 @@ jobs:
         value=`jq '.status.maintenance = true' <<<"$value"`
         echo $value > 'test.json'
         
+        git add .
         git commit -m "This is a scripted commit"
         git push
 
