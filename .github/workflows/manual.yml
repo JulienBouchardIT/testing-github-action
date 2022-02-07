@@ -19,6 +19,10 @@ on:
         description: 'Maintenance message'
         default: 'Hey boy! Im on maintenance'
         required: true
+      return_time:
+        description: 'Return time (YYYY-MM-DD hh:mm:ss)'
+        default: ''
+        required: false
 
 jobs:
   change_config:
@@ -31,17 +35,21 @@ jobs:
         sudo su
         mkdir tmp
         cd tmp
+        
+        # Set up git repo
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
         git config user.name "Github actions"
         git remote remove origin
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
+        #Change value
         value=`cat test.json`
         value=`jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' <<<"$value"`
-        value=`jq '.status.message = "${{ github.event.inputs.maintenance_message }}"' <<<"$value"`
+        value=`jq '.status.message = "${{ github.event.inputs.maintenance_message }} Back at ${{ github.event.inputs.return_time }}"' <<<"$value"`
         echo $value > 'test.json'
         
+        #Commit & push
         git add .
         git commit -m "This is a scripted commit"
         git push --set-upstream origin main
