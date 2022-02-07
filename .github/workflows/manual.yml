@@ -28,5 +28,22 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        echo "Message: ${{ github.event.inputs.maintenance_message }}"
-        git --help
+        sudo su
+        rm -r tmp
+        mkdir tmp
+        cd temp
+        apt-get update
+        apt-get install git
+        git clone https://github.com/JulienBouchardIT/testing-github-action.git
+        cd testing-github-action
+        git remote remove origin
+        git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
+        
+        value=`cat test.json`
+        value=`jq '.status.maintenance = true' <<<"$value"`
+        echo $value > 'test.json'
+        
+        git commit -m "This is a scripted commit"
+        git push
+
+
