@@ -39,6 +39,7 @@ jobs:
         
         value=`cat test.json`
         value=`jq '.status.maintenance = true' <<<"$value"`
+        value=`jq '.status.message = "${{ github.event.inputs.maintenance_message }}"' <<<"$value"`
         echo $value > 'test.json'
         
         git add .
