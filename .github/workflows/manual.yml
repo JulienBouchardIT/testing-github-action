@@ -38,7 +38,7 @@ jobs:
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
         value=`cat test.json`
-        value=`jq '.status.maintenance = true' <<<"$value"`
+        value=`jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' <<<"$value"`
         value=`jq '.status.message = "${{ github.event.inputs.maintenance_message }}"' <<<"$value"`
         echo $value > 'test.json'
         
