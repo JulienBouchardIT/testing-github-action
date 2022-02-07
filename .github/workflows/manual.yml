@@ -34,7 +34,6 @@ jobs:
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
         git config user.name "JulienBouchardIT"
-        git config user.email "someone@someplace.com"
         git remote remove origin
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
