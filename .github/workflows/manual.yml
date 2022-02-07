@@ -29,7 +29,6 @@ jobs:
     - name: Send greeting
       run: |
         sudo su
-        rm -r tmp
         mkdir tmp
         cd temp
         apt-get update
