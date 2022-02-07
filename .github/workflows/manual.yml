@@ -30,7 +30,7 @@ jobs:
       run: |
         sudo su
         mkdir tmp
-        cd temp
+        cd tmp
         apt-get update
         apt-get install git
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
