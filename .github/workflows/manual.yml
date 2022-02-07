@@ -32,6 +32,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Change config
       run: |
+        sudo su
         mkdir tmp
         cd tmp
         apt install moreutils
