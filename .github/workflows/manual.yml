@@ -28,6 +28,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Change config
       run: |
+        echo "User name: ${{ github.event.actor.login }}"
         sudo su
         mkdir tmp
         cd tmp
