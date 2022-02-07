@@ -36,6 +36,7 @@ jobs:
         mkdir tmp
         cd tmp
         apt install moreutils
+        echo "Depedencies installed"
         
         # Set up git repo
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
@@ -43,12 +44,15 @@ jobs:
         git config user.name "Github actions"
         git remote remove origin
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
+        echo "Git setuped"
         
         #Change value
         jq '.status.message = "${{ github.event.inputs.maintenance_message }} Back at ${{ github.event.inputs.return_time }}"' test.json |sponge test.json
         # jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' test.json |sponge test.json
+        echo "Value changed"
         
         #Commit & push
         git add .
         git commit -m "This is a scripted commit"
         git push --set-upstream origin main
+        echo "Changes pushed"
