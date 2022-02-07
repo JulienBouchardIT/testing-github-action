@@ -31,10 +31,10 @@ jobs:
         sudo su
         mkdir tmp
         cd tmp
-        git config user.name "change_config_workflow"
-        git config user.email "someone@someplace.com"
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
+        git config user.name "change_config_workflow"
+        git config user.email "someone@someplace.com"
         git remote remove origin
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
