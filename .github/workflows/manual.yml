@@ -28,13 +28,12 @@ jobs:
     # Runs a single command using the runners shell
     - name: Change config
       run: |
-        echo "User name: ${{ github.actor.login }}"
         sudo su
         mkdir tmp
         cd tmp
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
         cd testing-github-action
-        git config user.name "JulienBouchardIT"
+        git config user.name "Github actions"
         git remote remove origin
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
