@@ -1,6 +1,1 @@
-{
-  "status":{
-    "maintenance": false,
-    "message": "Oh no!"
-  }
-}
+{ "status": { "maintenance": true, "message": "Oh no!" } }
