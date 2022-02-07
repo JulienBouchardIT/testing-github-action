@@ -35,6 +35,7 @@ jobs:
         sudo su
         mkdir tmp
         cd tmp
+        apt install moreutils
         
         # Set up git repo
         git clone https://github.com/JulienBouchardIT/testing-github-action.git
@@ -44,10 +45,8 @@ jobs:
         git remote add origin https://${{ secrets.GIT_TOKEN }}@github.com/JulienBouchardIT/testing-github-action.git
         
         #Change value
-        value=`cat test.json`
-        value=`jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' <<<"$value"`
-        value=`jq '.status.message = "${{ github.event.inputs.maintenance_message }} Back at ${{ github.event.inputs.return_time }}"' <<<"$value"`
-        echo $value > 'test.json'
+        jq '.status.message = "${{ github.event.inputs.maintenance_message }} Back at ${{ github.event.inputs.return_time }}"' test.json |sponge test.json
+        jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' test.json |sponge test.json
         
         #Commit & push
         git add .
