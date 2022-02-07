@@ -11,25 +11,26 @@ on:
       environment:
         type: environment
         description: Select the environment
-      boolean:
+      maintenance_enable:
         type: boolean
         description: Maintenance
         required: true
-      name:
-        description: 'Message maintenance'
+      maintenance_message:
+        description: 'Maintenance message'
         default: 'Hey boy! Im on maintenance'
         required: true
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  change_config:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"/
+      run: |
+        if [ ${{ github.event.inputs.maintenance_enable }} ]
+          then
+            echo "Enable maintenance."
+        fi
+        echo "Message: ${{ github.event.inputs.maintenance_message }}"
         echo "waza"
