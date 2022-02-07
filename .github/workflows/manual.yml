@@ -47,7 +47,7 @@ jobs:
         #Change value
         tmp=$(mktemp)
         jq '.status.message = "${{ github.event.inputs.maintenance_message }} Back at ${{ github.event.inputs.return_time }}"' test.json > "$tmp" && mv "$tmp" test.json
-        # jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' test.json |sponge test.json
+        jq '.status.maintenance = ${{ github.event.inputs.maintenance_enable }}' test.json > "$tmp" && mv "$tmp" test.json
         echo "Value changed"
         
         #Commit & push
