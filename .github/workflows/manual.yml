@@ -28,9 +28,5 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: |
-        if [ ${{ github.event.inputs.maintenance_enable }} ]
-          then
-            echo "Enable maintenance."
-        fi
         echo "Message: ${{ github.event.inputs.maintenance_message }}"
-        echo "waza"
+        git --help
