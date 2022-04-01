@@ -23,6 +23,13 @@ on:
         description: 'Return time (YYYY-MM-DD hh:mm:ss)'
         default: ''
         required: false
+      choice:
+        type: choice
+        description: Make a choice
+        options:
+        - foo
+        - bar
+        - baz
 
 jobs:
   change_config:
